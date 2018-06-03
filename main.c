@@ -42,6 +42,7 @@ int Check_In_Email(char *str){
 		return(-1);
 	}
 	while(fgets(temp, 512, fp) != NULL) {
+		printf("%s",temp);
 		if((strstr(temp, str)) != NULL) {
 			count++;
 		}
