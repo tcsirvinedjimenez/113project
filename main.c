@@ -16,8 +16,8 @@ int main(int argc, char** argv)
 {
 	char emailname[]="6192194457@pm.sprint.com";
 	int check;
-	system("su - pi -c \"fetchmail > /dev/null\"");
 	while(1){
+		system("su - pi -c \"fetchmail > /dev/null\"");
 		check=Check_In_Email(emailname);
 		if(check==-1){
 			printf("Error file not there");
