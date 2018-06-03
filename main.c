@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	char emailname[]="6192194457@pm.sprint.com";
 	char strtemp[]="temp?";
 	int check[2]={0};
-	int result;
+	int result=0;
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
@@ -31,7 +31,6 @@ int main(int argc, char** argv)
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=Mail_Is_Diffrent();
-		break;
 		if(result==1){
 			//check for txt from email
 			check[0]=Check_In_Email(emailname);
@@ -55,9 +54,9 @@ int main(int argc, char** argv)
 				system(temp);
 			}
 		}
-		/*if(Does_File_Exist("/var/tmp/mail")){
+		if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
-		}*/
+		}
 	}
    
    return 0;
@@ -68,9 +67,11 @@ int Mail_Is_Diffrent(void){
 	char temp1[512];
 	char temp2[512];
 	if((fp1 = fopen("/var/tmp/mail", "r")) == NULL) {
+		printf("both files are not present\n");
 		return(-1);
 	}
 	if((fp2 = fopen("/var/tmp/mailcopy", "r")) == NULL) {
+		printf("both files are not present\n");
 		return(-1);
 	}
 	while((fgets(temp1, 512, fp1) != NULL) && (fgets(temp2, 512, fp2) != NULL)) {
