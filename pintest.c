@@ -26,11 +26,11 @@ int main (void)
     //}
 	if(digitalRead(LIGHT)){
 		printf("on \n");
-		delay(200);
+		delay(1000);
 	}
 	else{
 		printf("off \n");
-		delay(200);
+		delay(1000);
 	}	
   }
   return 0 ;
