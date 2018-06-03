@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <wiringPi.h>
 #include <pcf8591.h>
+#include <unistd.h>
 #define address 0x48
 #define pinbase 64
 #define A0 pinbase + 0 
@@ -22,8 +23,9 @@ int main(int argc, char** argv)
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
-	
-	//system("su - pi -c \"rm /var/tmp/mail\"");
+	if(access("/var/tmp/mail", F_OK ) != -1){
+		system("su - pi -c \"rm /var/tmp/mail\"");
+	}
 	printf("Process Starting");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
@@ -51,7 +53,9 @@ int main(int argc, char** argv)
 				system(temp);
 			}
 		}
-		system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
+		if(access("/var/tmp/mail", F_OK ) != -1){
+			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
+		}
 	}
    
    return 0;
