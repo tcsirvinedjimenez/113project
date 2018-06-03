@@ -23,9 +23,9 @@ int main (void)
     digitalWrite(LIGHT,LOW);
     delay(100);
 
-    pinmode(LIGHT,INPUT);
+    pinMode(LIGHT,INPUT);
 
-    while(!ditigalRead(LIGHT)){
+    while(!digitalRead(LIGHT)){
       count += 1;
     }
     printf("count: %d \n",count);
