@@ -24,9 +24,9 @@ int main(int argc, char** argv)
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
-	if(Does_File_Exist("/var/tmp/mail")){
+	/*if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
-	}
+	}*/
 	printf("Process Starting");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
