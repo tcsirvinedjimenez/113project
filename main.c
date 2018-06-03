@@ -15,18 +15,32 @@ int Check_In_Email(char *str);
 int main(int argc, char** argv)
 {
 	char emailname[]="6192194457@pm.sprint.com";
-	int check;
+	char strtemp[]="temp?"
+	int check[2]={0};
+	char temp[256];
+	char temp2[256];
+	float temperature=0.0;
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
-		check=Check_In_Email(emailname);
-		if(check==-1){
-			printf("Error file not there");
-			//break;
+		//check for txt from email
+		check[0]=Check_In_Email(emailname);
+		if(check[0]==-1){
+			printf("File Error 0\n");
 		}
 		else if(check){
-			while(1){
-				printf("Message Recieved");
-			}
+			printf("Message Recieved\n");
+		}
+		//check for temp command
+		check[1]=Check_In_Email(strtemp);
+		if(check[1]==-1){
+			printf("File Error 1\n");
+		}
+		else if(check[1]=){
+			strcpy(temp, "su - pi -c \"echo \"Rasberry Pi\" | mail -s \"Temperature is ");
+			gcvt(temperature, 6, temp2);
+			strcpy(temp,temp2);
+			strcpy(temp, "\" dannyjim2019@gmail.com\"");
+			system(temp);
 		}
 	}
    
