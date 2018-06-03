@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	char temp2[256];
 	float temperature=0.0;
 	
-	system("su - pi -c \"rm /var/temp/mail\"");
+	//system("su - pi -c \"rm /var/tmp/mail\"");
 	printf("Process Starting");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
