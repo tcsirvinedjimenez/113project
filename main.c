@@ -71,8 +71,8 @@ int Mail_Is_Diffrent(void){
 		return(-1);
 	}
 	if((fp2 = fopen("/var/tmp/mailcopy", "r")) == NULL) {
-		printf("both files are not present\n");
-		return(-1);
+		//printf("both files are not present\n");
+		return(1);
 	}
 	while((fgets(temp1, 512, fp1) != NULL) && (fgets(temp2, 512, fp2) != NULL)) {
 		if(temp1!=temp2) {
