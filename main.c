@@ -15,7 +15,7 @@ int Check_In_Email(char *str);
 int main(int argc, char** argv)
 {
 	char emailname[]="6192194457@pm.sprint.com";
-	char strtemp[]="temp?"
+	char strtemp[]="temp?";
 	int check[2]={0};
 	char temp[256];
 	char temp2[256];
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 		if(check[0]==-1){
 			printf("File Error 0\n");
 		}
-		else if(check){
+		else if(check[0]){
 			printf("Message Recieved\n");
 		}
 		//check for temp command
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 		if(check[1]==-1){
 			printf("File Error 1\n");
 		}
-		else if(check[1]=){
+		else if(check[1]){
 			strcpy(temp, "su - pi -c \"echo \"Rasberry Pi\" | mail -s \"Temperature is ");
 			gcvt(temperature, 6, temp2);
 			strcpy(temp,temp2);
