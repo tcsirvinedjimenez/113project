@@ -20,8 +20,8 @@ int main(int argc, char** argv)
 	while(1){
 		check=Check_In_Email(emailname);
 		if(check==-1){
-			printf("Error");
-			break;
+			printf("Error file not there");
+			//break;
 		}
 		else if(check){
 			while(1){
