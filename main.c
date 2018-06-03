@@ -54,9 +54,9 @@ int main(int argc, char** argv)
 				system(temp);
 			}
 		}
-		if(Does_File_Exist("/var/tmp/mail")){
+		/*if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
-		}
+		}*/
 	}
    
    return 0;
