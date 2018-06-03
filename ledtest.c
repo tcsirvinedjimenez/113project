@@ -43,7 +43,7 @@ char display [8] ;
 static int digits   [6] = {  7, 11, 10, 13, 12, 14    } ;
 static int segments [7] = {  6,  5,  4,  3,  2,  1, 0 } ;
 
-void start(void);
+
 
 PI_THREAD (displayDigits)
 {
@@ -76,35 +76,34 @@ PI_THREAD (displayDigits)
     }
   }
 }
-void start(void){
+int main(int argc, char** argv){
 	int i, c ;
 
-  wiringPiSetup () ;
+	wiringPiSetup () ;
 
-// 7 segments
+	// 7 segments
+	for (i = 0 ; i < 7 ; ++i){
+		digitalWrite(segments [i],0); 
+		pinMode (segments [i], OUTPUT); 
+	}
 
-  for (i = 0 ; i < 7 ; ++i)
-    { digitalWrite (segments [i], 0) ; pinMode (segments [i], OUTPUT) ; }
+	// 6 digits
+	for (i = 0 ; i < 6 ; ++i){ 
+		digitalWrite(digits[i],0);   
+		pinMode (digits[i],OUTPUT); 
+	}
 
-// 6 digits
-
-  for (i = 0 ; i < 6 ; ++i)
-    { digitalWrite (digits [i], 0) ;   pinMode (digits [i],   OUTPUT) ; }
-
-  strcpy (display, "      ") ;
-  piThreadCreate (displayDigits) ;
-  delay (10) ; // Just to make sure it's started
-
-// Quick countdown LED test sort of thing
-
-  c = 999999 ;
-  for (i = 0 ; i < 10 ; ++i)
-  {
-    sprintf (display, "%06d", c) ;
-    delay (400) ;
-    c -= 111111 ;
-  }
-
-  strcpy (display, "      ") ;
-  delay (400) ;
+	strcpy (display, "      ") ;
+	piThreadCreate (displayDigits) ;
+	delay (10) ;
+	while(1){
+		while (time (NULL) == tim){
+			delay(5);
+		}
+		delay(5);
+		tim = time (NULL) ;
+		t = localtime (&tim) ;
+		sprintf (display, "%02d%02d%02d", t->tm_hour, t->tm_min, t->tm_sec) ;
+	}
+	return 0;
 }
