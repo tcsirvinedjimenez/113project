@@ -18,7 +18,7 @@ int main (void)
   while(1)
   {
     int count = 0;
-    wiringPiSetup () ;
+    //wiringPiSetup () ;
     pinMode (LIGHT, OUTPUT) ;
     digitalWrite(LIGHT,LOW);
     delay(100);
