@@ -15,7 +15,7 @@ int main (void)
   pinMode (LED, OUTPUT) ;
   pinMode (LIGHT, INPUT);
   //pinMode (SWITCH, INPUT) ;
-  //pullUpDnControl(LIGHT, PUD_UP);
+  pullUpDnControl(LIGHT, PUD_UP);
 
   while(1)
   {
