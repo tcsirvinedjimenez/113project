@@ -7,7 +7,10 @@
 #define A0 pinbase + 0 
 #define A1 pinbase + 1 
 #define A2 pinbase + 2 
-#define A3 pinbase + 3 
+#define A3 pinbase + 3
+
+int Check_In_Email(char *str);
+ 
 int main(int argc, char** argv)
 {
 	char emailname[]="6192194457@pm.sprint.com";
@@ -21,7 +24,7 @@ int main(int argc, char** argv)
 		}
 		if else(check){
 			while(1){
-					printf("Message Recieved");
+				printf("Message Recieved");
 			}
 		}
 	}
