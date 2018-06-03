@@ -3,21 +3,21 @@
 
 // LED Pin - wiringPi pin 0 is BCM_GPIO 17.
 
-#define	LED	15
+#define	LED  15
 #define SWITCH 4
-
-int main (void)
+#define LIGHT 16
 {
   printf ("Raspberry Pi blink\n") ;
   
   wiringPiSetup () ;
   pinMode (LED, OUTPUT) ;
-  pinMode (SWITCH, INPUT) ;
-  pullUpDnControl(SWITCH, PUD_UP);
+  pinMode (LIGHT, INPUT);
+  //pinMode (SWITCH, INPUT) ;
+  //pullUpDnControl(SWITCH, PUD_UP);
 
   while(1)
   {
-    if(digitalRead(SWITCH)){
+    if(digitalRead(LIGHT)){
       digitalWrite (LED, HIGH) ;// On
     }else{
       digitalWrite (LED, LOW) ;	// Off
