@@ -6,6 +6,8 @@
 #define	LED  15
 #define SWITCH 4
 #define LIGHT 16
+
+int main (void)
 {
   printf ("Raspberry Pi blink\n") ;
   
