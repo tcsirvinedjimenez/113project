@@ -36,11 +36,12 @@ int main(int argc, char** argv)
 			printf("File Error 1\n");
 		}
 		else if(check[1]){
-			strcpy(temp, "su - pi -c \"echo \"Rasberry Pi\" | mail -s \"Temperature is ");
+			strcpy(temp, "su - pi -c \"echo ""Rasberry Pi\" | mail -s \"Temperature is ");
 			gcvt(temperature, 6, temp2);
-			strcpy(temp,temp2);
-			strcpy(temp, "\" dannyjim2019@gmail.com\"");
-			system(temp);
+			strcat(temp,temp2);
+			strcat(temp, "\" dannyjim2019@gmail.com\"");
+			printf("%s\n",temp);
+			//system(temp);
 		}
 	}
    
