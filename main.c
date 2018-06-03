@@ -16,7 +16,7 @@
 int Check_In_Email(char *str);
 int Mail_Is_Diffrent(void);
 int Does_File_Exist(char *filename);
-
+void start(void);
 
 static const int segmentDigits [] =
 {
@@ -42,6 +42,9 @@ static const int segmentDigits [] =
    0, 0, 0, 0, 0, 0, 0,	// blank
 } ;
 char display [8] ;
+static int digits   [6] = {  7, 11, 10, 13, 12, 14    } ;
+static int segments [7] = {  6,  5,  4,  3,  2,  1, 0 } ;
+
 PI_THREAD (displayDigits)
 {
   int digit, segment ;
@@ -83,6 +86,7 @@ int main(int argc, char** argv)
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
+	start();
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
@@ -122,6 +126,38 @@ int main(int argc, char** argv)
 	}
    
    return 0;
+}
+void start(void){
+	int i, c ;
+
+  wiringPiSetup () ;
+
+// 7 segments
+
+  for (i = 0 ; i < 7 ; ++i)
+    { digitalWrite (segments [i], 0) ; pinMode (segments [i], OUTPUT) ; }
+
+// 6 digits
+
+  for (i = 0 ; i < 6 ; ++i)
+    { digitalWrite (digits [i], 0) ;   pinMode (digits [i],   OUTPUT) ; }
+
+  strcpy (display, "      ") ;
+  piThreadCreate (displayDigits) ;
+  delay (10) ; // Just to make sure it's started
+
+// Quick countdown LED test sort of thing
+
+  c = 999999 ;
+  for (i = 0 ; i < 10 ; ++i)
+  {
+    sprintf (display, "%06d", c) ;
+    delay (400) ;
+    c -= 111111 ;
+  }
+
+  strcpy (display, "      ") ;
+  delay (400) ;
 }
 int Mail_Is_Diffrent(void){
 	FILE *fp1;
