@@ -29,9 +29,9 @@ int main(int argc, char** argv)
 	}
 	printf("Process Starting");
 	while(1){
-		break;
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=Mail_Is_Diffrent();
+		break;
 		if(result==1){
 			//check for txt from email
 			check[0]=Check_In_Email(emailname);
