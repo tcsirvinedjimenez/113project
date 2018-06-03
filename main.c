@@ -40,8 +40,8 @@ int main(int argc, char** argv)
 			gcvt(temperature, 6, temp2);
 			strcat(temp,temp2);
 			strcat(temp, "\" dannyjim2019@gmail.com");
-			printf("%s\n",temp);
-			//system(temp);
+			//printf("%s\n",temp);
+			system(temp);
 		}
 	}
    
