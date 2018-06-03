@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 			printf("Error");
 			break;
 		}
-		if else(check){
+		else if(check){
 			while(1){
 				printf("Message Recieved");
 			}
