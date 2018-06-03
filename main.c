@@ -18,14 +18,17 @@ int main(int argc, char** argv)
 	char emailname[]="6192194457@pm.sprint.com";
 	char strtemp[]="temp?";
 	int check[2]={0};
+	int result;
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
 	
 	system("su - pi -c \"rm /var/temp/mail\"");
+	printf("Process Starting");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
-		if(Mail_Is_Diffrent()){
+		result=Mail_Is_Diffrent();
+		if(result==1){
 			//check for txt from email
 			check[0]=Check_In_Email(emailname);
 			if(check[0]==-1){
