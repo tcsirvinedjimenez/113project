@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
-	printf("Process Starting");
+	printf("Process Starting\n");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=Mail_Is_Diffrent();
