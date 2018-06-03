@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 	}*/
 	printf("Process Starting");
 	while(1){
+		break;
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=Mail_Is_Diffrent();
 		if(result==1){
