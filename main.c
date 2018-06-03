@@ -13,6 +13,7 @@
 
 int Check_In_Email(char *str);
 int Mail_Is_Diffrent(void);
+int Does_File_Exist(char *filename);
  
 int main(int argc, char** argv)
 {
@@ -23,7 +24,7 @@ int main(int argc, char** argv)
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
-	if(access("/var/tmp/mail", F_OK ) != -1){
+	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
 	printf("Process Starting");
@@ -53,7 +54,7 @@ int main(int argc, char** argv)
 				system(temp);
 			}
 		}
-		if(access("/var/tmp/mail", F_OK ) != -1){
+		if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
 		}
 	}
@@ -87,6 +88,12 @@ int Mail_Is_Diffrent(void){
 	
 	
 }
+int Does_File_Exist(char *filename){
+   FILE *fp = fopen (filename, "r");
+   if (fp!=NULL) fclose (fp);
+   return (fp!=NULL);
+}
+
 int Check_In_Email(char *str){
 	FILE *fp;
 	int count = 0;
