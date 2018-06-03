@@ -15,15 +15,23 @@ int main (void)
   pinMode (LED, OUTPUT) ;
   pinMode (LIGHT, INPUT);
   //pinMode (SWITCH, INPUT) ;
-  pullUpDnControl(LIGHT, PUD_UP);
+  //pullUpDnControl(LIGHT, PUD_UP);
 
   while(1)
   {
-    if(digitalRead(LIGHT)){
-      digitalWrite (LED, HIGH) ;// On
-    }else{
-      digitalWrite (LED, LOW) ;	// Off
-    }
+    //if(digitalRead(LIGHT)){
+      //digitalWrite (LED, HIGH) ;// On
+    //}else{
+      //digitalWrite (LED, LOW) ;	// Off
+    //}
+	if(digitalRead(LIGHT)){
+		printf("on \n");
+		delay(200);
+	}
+	else{
+		printf("off \n");
+		delay(200);
+	}	
   }
   return 0 ;
 }
