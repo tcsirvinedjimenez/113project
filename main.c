@@ -10,10 +10,69 @@
 #define A1 pinbase + 1 
 #define A2 pinbase + 2 
 #define A3 pinbase + 3
+#include <time.h>
+#include <ctype.h>
 
 int Check_In_Email(char *str);
 int Mail_Is_Diffrent(void);
 int Does_File_Exist(char *filename);
+
+
+static const int segmentDigits [] =
+{
+// a  b  c  d  e  f  g     Segments
+// 6  5  4  3  2  1  0,	// wiringPi pin No.
+
+   1, 1, 1, 1, 1, 1, 0,	// 0
+   0, 1, 1, 0, 0, 0, 0,	// 1
+   1, 1, 0, 1, 1, 0, 1,	// 2
+   1, 1, 1, 1, 0, 0, 1,	// 3
+   0, 1, 1, 0, 0, 1, 1,	// 4
+   1, 0, 1, 1, 0, 1, 1,	// 5
+   1, 0, 1, 1, 1, 1, 1,	// 6
+   1, 1, 1, 0, 0, 0, 0,	// 7
+   1, 1, 1, 1, 1, 1, 1,	// 8
+   1, 1, 1, 1, 0, 1, 1,	// 9
+   1, 1, 1, 0, 1, 1, 1,	// A
+   0, 0, 1, 1, 1, 1, 1,	// b
+   1, 0, 0, 1, 1, 1, 0,	// C
+   0, 1, 1, 1, 1, 0, 1,	// d
+   1, 0, 0, 1, 1, 1, 1,	// E
+   1, 0, 0, 0, 1, 1, 1,	// F
+   0, 0, 0, 0, 0, 0, 0,	// blank
+} ;
+char display [8] ;
+PI_THREAD (displayDigits)
+{
+  int digit, segment ;
+  int index, d, segVal ;
+
+  piHiPri (50) ;
+
+  for (;;)
+  {
+    for (digit = 0 ; digit < 6 ; ++digit)
+    {
+      for (segment = 0 ; segment < 7 ; ++segment)
+      {
+	d = toupper (display [digit]) ;
+	/**/ if ((d >= '0') && (d <= '9'))	// Digit
+	  index = d - '0' ;
+	else if ((d >= 'A') && (d <= 'F'))	// Hex
+	  index = d - 'A' + 10 ;
+	else
+	  index = 16 ;				// Blank
+
+	segVal = segmentDigits [index * 7 + segment] ;
+
+	digitalWrite (segments [segment], segVal) ;
+      }
+      digitalWrite (digits [digit], 1) ;
+      delay (2) ;
+      digitalWrite (digits [digit], 0) ;
+    }
+  }
+}
  
 int main(int argc, char** argv)
 {
@@ -26,6 +85,9 @@ int main(int argc, char** argv)
 	float temperature=0.0;
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
+	}
+	if(Does_File_Exist("/var/tmp/mailcopy")){
+		system("su - pi -c \"rm /var/tmp/mailcopy\"");
 	}
 	printf("Process Starting\n");
 	while(1){
@@ -71,7 +133,7 @@ int Mail_Is_Diffrent(void){
 		return(-1);
 	}
 	if((fp2 = fopen("/var/tmp/mailcopy", "r")) == NULL) {
-		//printf("both files are not present\n");
+		printf("new file detected\n");
 		return(1);
 	}
 	while((fgets(temp1, 512, fp1) != NULL) && (fgets(temp2, 512, fp2) != NULL)) {
