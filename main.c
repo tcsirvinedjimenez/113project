@@ -28,7 +28,6 @@ int main(int argc, char** argv)
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
-	start();
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
