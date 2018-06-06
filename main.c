@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 				strcpy(temp, "echo \"Rasberry Pi\" | mail -s \"Temperature is ");
 				gcvt(temperature, 6, temp2);
 				strcat(temp,temp2);
-				strcat(temp, "\" dannyjim2019@gmail.com");
+				strcat(temp, "\" dannyjim2020@gmail.com");
 				//printf("%s\n",temp);
 				system(temp);
 			}
