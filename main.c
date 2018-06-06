@@ -84,6 +84,7 @@ int Mail_Is_Diffrent(void){
 	}
 	while((fgets(temp1, 512, fp1) != NULL) && (fgets(temp2, 512, fp2) != NULL)) {
 		if(temp1!=temp2) {
+			printf("new file detected\n");
 			return 1;
 		}
 	}
