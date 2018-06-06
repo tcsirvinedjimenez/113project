@@ -72,21 +72,17 @@ int main(int argc, char** argv)
 int Mail_Is_Diffrent(void){
 	FILE *fp1;
 	FILE *fp2;
-	char temp1[512];
-	char temp2[512];
-	if((fp1 = fopen("/var/tmp/mail", "r")) == NULL) {
-		printf("both files are not present\n");
-		return(-1);
-	}
-	if((fp2 = fopen("/var/tmp/mailcopy", "r")) == NULL) {
-		printf("new file detected\n");
-		return(1);
-	}
-	while((fgets(temp1, 512, fp1) != NULL) && (fgets(temp2, 512, fp2) != NULL)) {
-		if(temp1!=temp2) {
-			printf("new file detected\n");
-			return 1;
+	int result=1;
+	char tempchar1 = getc(fp1);
+    char tempchar2 = getc(fp2);
+	 while (tempchar1 != EOF && tempchar2 != EOF){
+		 
+		 if (tempchar1 != tempchar2){
+			result=0;
 		}
+		ch1 = getc(fp1);
+        ch2 = getc(fp2);
+		
 	}
 	
 	if(fp1) {
@@ -95,7 +91,7 @@ int Mail_Is_Diffrent(void){
 	if(fp2) {
 		fclose(fp2);
 	}
-	return 0;
+	return result;
 	
 	
 }
