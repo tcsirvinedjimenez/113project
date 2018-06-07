@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 		result=0;
 		if(Does_File_Exist("/var/tmp/mail")){
 			if(Does_File_Exist("/var/tmp/mailcopy")){
-				result=;
+				result=Mail_Is_Diffrent();
 				
 			}	
 		}
