@@ -40,6 +40,7 @@ int main(int argc, char** argv)
 		result=0;
 		if(Does_File_Exist("/var/tmp/mail") && Does_File_Exist("/var/tmp/mailcopy")){
 			result=Mail_Is_Diffrent();
+			printf("Mail is diffrent");
 		}
 		if(result==1){
 			//check for txt from email
@@ -66,6 +67,7 @@ int main(int argc, char** argv)
 		}
 		if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
+			printf("Making copy of file");
 		}
 	}
    
@@ -88,10 +90,10 @@ int Mail_Is_Diffrent(void){
 		
 	}
 	
-	if(fp1!=NULL) {
+	if(fp1) {
 		fclose(fp1);
 	}
-	if(fp2!=NULL) {
+	if(fp2) {
 		fclose(fp2);
 	}
 	return result;
