@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=0;
-		if(Does_File_Exist("/var/tmp/mail") && Does_File_Exist("/var/tmp/mailcopy"){
+		if(Does_File_Exist("/var/tmp/mail") && Does_File_Exist("/var/tmp/mailcopy")){
 			result=Mail_Is_Diffrent();
 		}
 		if(result==1){
@@ -88,14 +88,12 @@ int Mail_Is_Diffrent(void){
 		
 	}
 	
-	/*if(fp1!=NULL) {
+	if(fp1!=NULL) {
 		fclose(fp1);
 	}
 	if(fp2!=NULL) {
 		fclose(fp2);
-	}*/
-	fclose(fp1);
-	fclose(fp2);
+	}
 	return result;
 	
 	
