@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 		}
 		if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
-			printf("Making copy of file");
+			printf("Making copy of file\n");
 		}
 	}
    
@@ -83,7 +83,9 @@ int Mail_Is_Diffrent(void){
 	char tempchar1 = getc(fp1);
     char tempchar2 = getc(fp2);
 	while (tempchar1 != EOF && tempchar2 != EOF){
-		 
+		printf("inside loop\n");
+		printf("%c\n",tempchar1);
+		printf("%c\n",tempchar2);
 		if (tempchar1 != tempchar2){
 			diff++;
 		}
@@ -102,7 +104,7 @@ int Mail_Is_Diffrent(void){
 		return 1;
 	}
 	else{
-		printf("files have diffrence: %d",diff);
+		printf("files have diffrence: %d\n",diff);
 		return 0;
 	}
 	
