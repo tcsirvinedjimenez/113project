@@ -80,8 +80,8 @@ int Mail_Is_Diffrent(void){
 		 if (tempchar1 != tempchar2){
 			result=0;
 		}
-		ch1 = getc(fp1);
-        ch2 = getc(fp2);
+		tempchar1 = getc(fp1);
+        tempchar2 = getc(fp2);
 		
 	}
 	
