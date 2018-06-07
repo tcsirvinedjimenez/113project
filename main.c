@@ -14,7 +14,6 @@
 #include <ctype.h>
 
 int Check_In_Email(char *str);
-int Mail_Is_Diffrent(void);
 int Does_File_Exist(char *filename);
 
 
@@ -24,7 +23,6 @@ int main(int argc, char** argv)
 	char emailname[]="6192194457@pm.sprint.com";
 	char strtemp[]="temp?";
 	int check[2]={0};
-	int result=0;
 	char temp[256];
 	char temp2[256];
 	float temperature=0.0;
@@ -37,16 +35,7 @@ int main(int argc, char** argv)
 	printf("Process Starting\n");
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
-		result=0;
-		/*if(Does_File_Exist("/var/tmp/mail")){
-			if(Does_File_Exist("/var/tmp/mailcopy")){
-				result=Mail_Is_Diffrent();
-				
-			}	
-		}*/
 		if(Does_File_Exist("/var/tmp/mail")){
-		//if(result==1){
-			//check for txt from email
 			check[0]=Check_In_Email(emailname);
 			if(check[0]==-1){
 				printf("File Error 0\n");
@@ -64,77 +53,23 @@ int main(int argc, char** argv)
 				gcvt(temperature, 6, temp2);
 				strcat(temp,temp2);
 				strcat(temp, "\" dannyjim2020@gmail.com");
-				//printf("%s\n",temp);
 				system(temp);
 			}
 		}
 		if(Does_File_Exist("/var/tmp/mail")){
-			//system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
 			system("su - pi -c \"rm /var/tmp/mail\"");
-			//printf("Making copy of file\n");
 		}
 	}
    
    return 0;
 }
 
-/*int Mail_Is_Diffrent(void){
-	FILE *fp1=fopen("/var/tmp/mailcopy", "r");
-	FILE *fp2=fopen("/var/tmp/mail", "r");
-	int result=1;
-	char tempchar1[256]);
-    char tempchar2[256];
-	while (1){
-		if(fgets(tempchar1, 256, fp1) != NULL && fgets(tempchar2, 256, fp2) != NULL ) {
-			if((strstr(tempchar1, tempchar2)) != NULL) {
-				
-			}
-			else{
-				result =0;
-				break;
-			}
-		}
-	}
-	
-	if(fp1!=NULL) {
-		fclose(fp1);
-	}
-	if(fp2!=NULL) {
-		fclose(fp2);
-	}
-	if(diff>0){
-		return 1;
-	}
-	else{
-		printf("files have diffrence: %d\n",diff);
-		return 0;
-	}
-	
-	
-}*/
-int Mail_Is_Diffrent(void){
-	FILE *fp1=fopen("/var/tmp/mailcopy", "r");
-	FILE *fp2=fopen("/var/tmp/mail", "r");
-	int char1,char2;
-	char1 = getc(fp1);
-    char2 = getc(fp2);
-	while ((char1 != EOF) && (char2 != EOF) && (char1 == char2)) {
-		char1 = getc(fp1);
-		char2 = getc(fp2);
-	}
-	if (char1 == char2){
-        printf("Files are identical \n");
-		return 1;
-	}
-    else if (char1 != char2){
-		printf("Files are Not identical \n");
-		return 0;
-	}
-}
+
 int Does_File_Exist(char *filename){
    FILE *fp = fopen (filename, "r");
-   printf("checking if files exist\n");
-   if (fp!=NULL) fclose (fp);
+   if (fp!=NULL){ 
+	fclose(fp);
+   }
    return (fp!=NULL);
 }
 
@@ -147,7 +82,6 @@ int Check_In_Email(char *str){
 		return(-1);
 	}
 	while(fgets(temp, 512, fp) != NULL) {
-		//printf("%s",temp);
 		if((strstr(temp, str)) != NULL) {
 			count++;
 		}
