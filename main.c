@@ -120,11 +120,11 @@ int Mail_Is_Diffrent(void){
 		char1 = getc(fp1);
 		char2 = getc(fp2);
 	}
-	if (ch1 == ch2){
+	if (char1 == char2){
         printf("Files are identical \n");
 		return 1;
 	}
-    else if (ch1 != ch2){
+    else if (char1 != char2){
 		printf("Files are Not identical \n");
 		return 0;
 	}
