@@ -40,8 +40,8 @@ int main(int argc, char** argv)
 		result=0;
 		if(Does_File_Exist("/var/tmp/mail")){
 			if(Does_File_Exist("/var/tmp/mailcopy")){
-				result=1;
-				printf("both files are present\n");
+				result=;
+				
 			}	
 		}
 		if(result==1){
@@ -79,26 +79,32 @@ int main(int argc, char** argv)
 int Mail_Is_Diffrent(void){
 	FILE *fp1=fopen("/var/tmp/mailcopy", "r");
 	FILE *fp2=fopen("/var/tmp/mail", "r");
-	int result=1;
+	int diff=0;
 	char tempchar1 = getc(fp1);
     char tempchar2 = getc(fp2);
 	while (tempchar1 != EOF && tempchar2 != EOF){
 		 
-		 if (tempchar1 != tempchar2){
-			result=0;
+		if (tempchar1 != tempchar2){
+			diff++;
 		}
 		tempchar1 = getc(fp1);
         tempchar2 = getc(fp2);
 		
 	}
 	
-	if(fp1) {
+	if(fp1!=NULL) {
 		fclose(fp1);
 	}
-	if(fp2) {
+	if(fp2!=NULL) {
 		fclose(fp2);
 	}
-	return result;
+	if(diff>0){
+		return 1;
+	}
+	else{
+		printf("files have diffrence: %d",diff);
+		return 0;
+	}
 	
 	
 }
@@ -123,7 +129,7 @@ int Check_In_Email(char *str){
 			count++;
 		}
 	}
-	if(fp) {
+	if(fp!=NULL) {
 		fclose(fp);
 	}
 	if(count > 0) {
