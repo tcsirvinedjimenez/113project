@@ -38,13 +38,14 @@ int main(int argc, char** argv)
 	while(1){
 		system("su - pi -c \"fetchmail > /dev/null\"");
 		result=0;
-		if(Does_File_Exist("/var/tmp/mail")){
+		/*if(Does_File_Exist("/var/tmp/mail")){
 			if(Does_File_Exist("/var/tmp/mailcopy")){
 				result=Mail_Is_Diffrent();
 				
 			}	
-		}
-		if(result==1){
+		}*/
+		if(Does_File_Exist("/var/tmp/mail")){
+		//if(result==1){
 			//check for txt from email
 			check[0]=Check_In_Email(emailname);
 			if(check[0]==-1){
@@ -68,8 +69,9 @@ int main(int argc, char** argv)
 			}
 		}
 		if(Does_File_Exist("/var/tmp/mail")){
-			system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
-			printf("Making copy of file\n");
+			//system("su - pi -c \"cp /var/tmp/mail /var/tmp/mailcopy\"");
+			system("su - pi -c \"rm /var/tmp/mail\"");
+			//printf("Making copy of file\n");
 		}
 	}
    
