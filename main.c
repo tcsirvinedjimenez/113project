@@ -70,12 +70,12 @@ int main(int argc, char** argv)
 }
 
 int Mail_Is_Diffrent(void){
-	FILE *fp1;
-	FILE *fp2;
+	FILE *fp1=fopen("/var/tmp/mailcopy", "r");;
+	FILE *fp2=fopen("/var/tmp/mail", "r");;
 	int result=1;
 	char tempchar1 = getc(fp1);
     char tempchar2 = getc(fp2);
-	 while (tempchar1 != EOF && tempchar2 != EOF){
+	while (tempchar1 != EOF && tempchar2 != EOF){
 		 
 		 if (tempchar1 != tempchar2){
 			result=0;
@@ -85,10 +85,10 @@ int Mail_Is_Diffrent(void){
 		
 	}
 	
-	if(fp1) {
+	if(fp1!=NULL) {
 		fclose(fp1);
 	}
-	if(fp2) {
+	if(fp2!=NULL) {
 		fclose(fp2);
 	}
 	return result;
