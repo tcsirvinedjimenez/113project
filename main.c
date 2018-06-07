@@ -76,22 +76,22 @@ int main(int argc, char** argv)
    return 0;
 }
 
-int Mail_Is_Diffrent(void){
+/*int Mail_Is_Diffrent(void){
 	FILE *fp1=fopen("/var/tmp/mailcopy", "r");
 	FILE *fp2=fopen("/var/tmp/mail", "r");
-	int diff=0;
-	char tempchar1 = getc(fp1);
-    char tempchar2 = getc(fp2);
-	while (tempchar1 != EOF && tempchar2 != EOF){
-		printf("inside loop\n");
-		printf("%c\n",tempchar1);
-		printf("%c\n",tempchar2);
-		if (tempchar1 != tempchar2){
-			diff++;
+	int result=1;
+	char tempchar1[256]);
+    char tempchar2[256];
+	while (1){
+		if(fgets(tempchar1, 256, fp1) != NULL && fgets(tempchar2, 256, fp2) != NULL ) {
+			if((strstr(tempchar1, tempchar2)) != NULL) {
+				
+			}
+			else{
+				result =0;
+				break;
+			}
 		}
-		tempchar1 = getc(fp1);
-        tempchar2 = getc(fp2);
-		
 	}
 	
 	if(fp1!=NULL) {
@@ -109,6 +109,25 @@ int Mail_Is_Diffrent(void){
 	}
 	
 	
+}*/
+int Mail_Is_Diffrent(void){
+	FILE *fp1=fopen("/var/tmp/mailcopy", "r");
+	FILE *fp2=fopen("/var/tmp/mail", "r");
+	int char1,char2;
+	char1 = getc(fp1);
+    char2 = getc(fp2);
+	while ((char1 != EOF) && (char2 != EOF) && (char1 == char2)) {
+		char1 = getc(fp1);
+		char2 = getc(fp2);
+	}
+	if (ch1 == ch2){
+        printf("Files are identical \n");
+		return 1;
+	}
+    else if (ch1 != ch2){
+		printf("Files are Not identical \n");
+		return 0;
+	}
 }
 int Does_File_Exist(char *filename){
    FILE *fp = fopen (filename, "r");
