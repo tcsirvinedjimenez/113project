@@ -15,12 +15,11 @@
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
+void messagecode(int temperature);
 
 int main(int argc, char** argv)
 {
-	char emailname[]="6192194457@pm.sprint.com";
-	char strtemp[]="temp?";
-	int check[2]={0};
+	
 	char temp[256];
 	char temp2[256];
 	int temperature=0;
@@ -46,7 +45,7 @@ int main(int argc, char** argv)
         time(&timer);
         tm_info = localtime(&timer);
         
-		strftime(buffer1, 26, "%H:%M:%S Temp", tm_info);  
+		strftime(buffer1, 26, "%H:%M:%S  Temp", tm_info);  
         strftime(buffer2, 26, "%m:%d:%Y  ", tm_info);
 		gcvt(temperature, 6, temp2);
 		strcat(buffer2,temp2);
@@ -54,8 +53,29 @@ int main(int argc, char** argv)
         lcdPuts(lcd, buffer1);
 		lcdPosition(lcd, 0, 1);
         lcdPuts(lcd, buffer2);
+		message(temperature);
 		
-		system("su - pi -c \"fetchmail > /dev/null\"");
+		
+	}
+   
+   return 0;
+}
+int Does_File_Exist(char *filename){
+   FILE *fp = fopen (filename, "r");
+   if (fp!=NULL){ 
+	fclose(fp);
+   }
+   return (fp!=NULL);
+}
+
+void messagecode(int temperature){
+	int check[2]={0};
+	char emailname[]="6192194457@pm.sprint.com";
+	char strtemp[]="temp?";
+	char temp[256];
+	char temp2[256];
+	
+	system("su - pi -c \"fetchmail > /dev/null\"");
 		if(Does_File_Exist("/var/tmp/mail")){
 			check[0]=Check_In_Email(emailname);
 			if(check[0]==-1){
@@ -80,17 +100,8 @@ int main(int argc, char** argv)
 		if(Does_File_Exist("/var/tmp/mail")){
 			system("su - pi -c \"rm /var/tmp/mail\"");
 		}
-	}
-   
-   return 0;
 }
-int Does_File_Exist(char *filename){
-   FILE *fp = fopen (filename, "r");
-   if (fp!=NULL){ 
-	fclose(fp);
-   }
-   return (fp!=NULL);
-}
+
 
 int Check_In_Email(char *str){
 	FILE *fp;
