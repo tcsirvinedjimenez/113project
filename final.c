@@ -135,6 +135,7 @@ int main(int argc, char** argv)
 					intruder=1;
 				}
 				oldDelta=delta_us;
+				printf("olddeta %f\n",delta_us);
 			}
 		}
 		
