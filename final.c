@@ -131,7 +131,7 @@ int main(int argc, char** argv)
 					system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 					intruder=1;
 				}
-				olddelta=delta_us;
+				oldDelta=delta_us;
 			}
 		}
 		
