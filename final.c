@@ -85,3 +85,36 @@ int main(int argc, char** argv)
    
    return 0;
 }
+int Does_File_Exist(char *filename){
+   FILE *fp = fopen (filename, "r");
+   if (fp!=NULL){ 
+	fclose(fp);
+   }
+   return (fp!=NULL);
+}
+
+int Check_In_Email(char *str){
+	FILE *fp;
+	int count = 0;
+	char temp[512];
+	
+	if((fp = fopen("/var/tmp/mail", "r")) == NULL) {
+		return(-1);
+	}
+	while(fgets(temp, 512, fp) != NULL) {
+		if((strstr(temp, str)) != NULL) {
+			count++;
+		}
+	}
+	if(fp!=NULL) {
+		fclose(fp);
+	}
+	if(count > 0) {
+		return(1);
+	}
+	else{
+		return(0);
+	}
+   	
+
+}
