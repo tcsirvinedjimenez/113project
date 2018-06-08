@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 				lcdPuts(lcd, buffer1);
 			}
 			digitalWrite (LED, HIGH) ;
-			strcpy(buffer1,"out-of-home       ");
+			strcpy(buffer1,"out-of-home     ");
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
@@ -120,9 +120,9 @@ int main(int argc, char** argv)
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				
 				if(count>100000 || (oldDelta>delta_us-2000 && oldDelta<delta_us+2000)){
-					strcpy(buffer1,"               ");
+					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
-					strcpy(buffer1,"                ");
+					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 1);
 					strcpy(buffer1,"Intruder Detected");
 					lcdPuts(lcd, buffer1);
