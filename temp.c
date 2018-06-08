@@ -38,7 +38,7 @@ int main (void)
 	float t0 = 273.15;
 	float t25 = t0 + 25.0;
 	float inv_T = (1.0/t25) + (1.0/b) * log(resistance/r0); 
-	float real_temp = 0.9 * ((1.0/inv_T)-t0);
+	float real_temp = 0.01 * ((1.0/inv_T)-t0);
 	printf("Temp: %f \n");
 
   return 0 ;
