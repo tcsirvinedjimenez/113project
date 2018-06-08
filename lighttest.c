@@ -25,7 +25,7 @@ int main (void)
 
     pinmode(LIGHT,INPUT);
 
-    while(!ditigalRead(LIGHT)){
+    while(!digitalRead(LIGHT)){
       count += 1;
     }
     printf("count: %d \n",count);
