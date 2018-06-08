@@ -36,7 +36,7 @@ int main (void)
 	
     double delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
     distance = delta_us*17150;
-    printf("Distance: %f",distance);
+    printf("Distance: %f",delta_us);
      
     return 0 ;
 }
