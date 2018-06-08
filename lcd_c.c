@@ -36,6 +36,9 @@ void main(void) {
 	sendString("EdSim51 LCD Module Simulation");
 	setDdRamAddress(0x40); // set address to start of second line
 	sendString("Based on Hitachi HD44780");
+	
+	while(1){
+	}
 }
 
 // LCD Module instructions -------------------------------------------
