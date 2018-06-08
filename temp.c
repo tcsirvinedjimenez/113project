@@ -17,11 +17,11 @@ int main (void)
 	for(i = 0; i<100; i++){
 	  pinMode (APIN, INPUT);
   	pinMode (BPIN, OUTPUT);
-		digitalWrite(BPIN,LOW):
+		digitalWrite(BPIN,LOW);
 		delaY(100);
   	pinMode (BPIN, INPUT);
   	pinMode (APIN, OUTPUT);
-		digitalWrite(APIN,HIGH):
+		digitalWrite(APIN,HIGH);
 		clock_gettime(CLOCK_MONOTONIC_RAW, &start);
 
 		while(!digitalRead(BPIN)){
