@@ -1,6 +1,8 @@
 #include <wiringPi.h>           //WiringPi headers
 #include <lcd.h>                //LCD headers from WiringPi
 #include <stdio.h>              //Needed for the printf function below
+#include <time.h>
+#include <ctype.h>
 
 //Pin numbers below are the WiringPi pin numbers
 
@@ -24,4 +26,23 @@ int main()
     lcdPosition(lcd,0,0);  //Position cursor on the first line in the first column
     lcdPuts(lcd, "HELLO WORLD");  //Print the text on the LCD at the current cursor postion
     getchar();                      //Wait for key press
+	 while(1){
+        time_t timer;
+        char buffer_date[26];
+        char buffer_time[26];
+        struct tm* tm_info;
+
+        time(&timer);
+        tm_info = localtime(&timer);
+
+        strftime(buffer_date, 26, "Date: %m:%d:%Y", tm_info);
+        strftime(buffer_time, 26, "Time: %H:%M:%S", tm_info);
+
+        lcdPosition(lcd, 0, 0);
+        lcdPuts(lcd, buffer_date);
+
+        lcdPosition(lcd, 0, 1);
+        lcdPuts(lcd, buffer_time);
+
+	}
 }
