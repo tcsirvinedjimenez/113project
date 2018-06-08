@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         lcdPuts(lcd, buffer1);
 		lcdPosition(lcd, 0, 1);
         lcdPuts(lcd, buffer2);
-		message(temperature);
+		messagecode(temperature);
 		
 		
 	}
