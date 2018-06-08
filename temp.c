@@ -28,16 +28,17 @@ int main (void)
 		}
 		clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 		temp = temp + (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;	
-		printf("looped %f",temp);	
+
 	}
 	double reading = temp/100.0;
-	double resistance = reading * 6.05 - 939;
+	double resistance = reading * 6.05 - 939.0;
+	printf("R: %f\n",resistance);
 	float b = 3800.0;
 	float r0 = 1000.0;
 	float t0 = 273.15;
 	float t25 = t0 + 25.0;
 	float inv_T = (1.0/t25) + (1.0/b) * log(resistance/r0); 
-	float real_temp = .9 * ((1.0/inv_T)-t0);
+	float real_temp = 0.9 * ((1.0/inv_T)-t0);
 	printf("Temp: %f \n");
 
   return 0 ;
