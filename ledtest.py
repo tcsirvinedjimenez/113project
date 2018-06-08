@@ -85,36 +85,36 @@ def lcd_byte(bits, mode):
     time.sleep(E_DELAY)
 
 if __name__=='__main__':
-         try:
-                # LCD GPIO Setup
-                 GPIO.setup(LCD_E, GPIO.OUT)
-                 GPIO.setup(LCD_RS, GPIO.OUT)
-                 GPIO.setup(LCD_D4, GPIO.OUT)
-                 GPIO.setup(LCD_D5, GPIO.OUT)
-                 GPIO.setup(LCD_D6, GPIO.OUT)
-                 GPIO.setup(LCD_D7, GPIO.OUT)
+	 try:
+		# LCD GPIO Setup
+		 GPIO.setup(LCD_E, GPIO.OUT)
+		 GPIO.setup(LCD_RS, GPIO.OUT)
+		 GPIO.setup(LCD_D4, GPIO.OUT)
+		 GPIO.setup(LCD_D5, GPIO.OUT)
+		 GPIO.setup(LCD_D6, GPIO.OUT)
+		 GPIO.setup(LCD_D7, GPIO.OUT)
 
-                # Initialise display
-                 lcd_init()
-                 LCDLine1 = "Hello World!"
-                 lcd_byte(LCD_LINE_1, LCD_CMD)
-                 lcd_string(LCDLine1)
-                              
-                 while True:  
-                     #Wait 1 seconds
-                     time.sleep(1)
-                     PiTime = time.strftime("Time:  %H:%M:%S", time.localtime())
-                     PiDate = time.strftime("Date:%d %b %Y", time.localtime())
-                     LCDLine1 = PiDate
-                     LCDLine2 = PiTime
-                     lcd_byte(LCD_LINE_1, LCD_CMD)
-                     lcd_string(LCDLine1)
-                     lcd_byte(LCD_LINE_2, LCD_CMD)
-                     lcd_string(LCDLine2)
-         except KeyboardInterrupt: 
-             pass
-         # Shutdown         lcd_byte(LCD_LINE_1, LCD_CMD)
-         lcd_string(" Goodbye :)")
-         lcd_byte(LCD_LINE_2, LCD_CMD)
-         lcd_string(" ")
-         GPIO.cleanup()
+		# Initialise display
+		 lcd_init()
+		 LCDLine1 = "Hello World!"
+		 lcd_byte(LCD_LINE_1, LCD_CMD)
+		 lcd_string(LCDLine1)
+					  
+		 while True:  
+			 #Wait 1 seconds
+			 time.sleep(1)
+			 PiTime = time.strftime("Time:  %H:%M:%S", time.localtime())
+			 PiDate = time.strftime("Date:%d %b %Y", time.localtime())
+			 LCDLine1 = PiDate
+			 LCDLine2 = PiTime
+			 lcd_byte(LCD_LINE_1, LCD_CMD)
+			 lcd_string(LCDLine1)
+			 lcd_byte(LCD_LINE_2, LCD_CMD)
+			 lcd_string(LCDLine2)
+	 except KeyboardInterrupt: 
+		 pass
+	 # Shutdown         lcd_byte(LCD_LINE_1, LCD_CMD)
+	 lcd_string(" Goodbye :)")
+	 lcd_byte(LCD_LINE_2, LCD_CMD)
+	 lcd_string(" ")
+	 GPIO.cleanup()
