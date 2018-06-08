@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <wiringPi.h>
-#include <time.h>
+#include <sys/time.h>
 
 // LED Pin - wiringPi pin 0 is BCM_GPIO 17.
 
