@@ -51,13 +51,14 @@ int main(int argc, char** argv)
 	pinMode (LED2, OUTPUT) ;
 	pinMode (LIGHT, INPUT) ;
 	
+	
 	printf("Process Starting\n");
 	while(1){
 		if(digitalRead(SWITCH)){
 			digitalWrite (LED, LOW) ;
+			digitalWrite (LED2, LOW) ;
 			time(&timer);
 			tm_info = localtime(&timer);
-			
 			strftime(buffer1, 26, "%H:%M:%S   Temp", tm_info);  
 			strftime(buffer2, 26, "%m:%d:%Y  ", tm_info);
 			gcvt(temperature, 6, temp2);
@@ -69,6 +70,11 @@ int main(int argc, char** argv)
 			messagecode(temperature);
 		}
 		else{
+			strcpy(buffer1,"               ");
+			lcdPosition(lcd, 0, 0);
+			strcpy(buffer1,"                ");
+			lcdPosition(lcd, 0, 1);
+			lcdPuts(lcd, buffer1);
 			digitalWrite (LED, HIGH) ;
 			strcpy(buffer1,"out-of-home");
 			lcdPosition(lcd, 0, 0);
@@ -81,6 +87,10 @@ int main(int argc, char** argv)
 				count += 1;
 			}
 			if(count>100000){
+				strcpy(buffer1,"               ");
+				lcdPosition(lcd, 0, 0);
+				strcpy(buffer1,"                ");
+				lcdPosition(lcd, 0, 1);
 				strcpy(buffer1,"Intruder Detected");
 				lcdPuts(lcd, buffer1);
 				lcdPosition(lcd, 0, 1);
