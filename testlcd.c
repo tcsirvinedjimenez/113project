@@ -16,4 +16,6 @@ int main()
     lcd = lcdInit (2, 16, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0);
                
     lcdPuts(lcd, "Hello, world!");   
+    while(1){
+    }
 }
