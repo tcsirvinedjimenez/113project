@@ -78,7 +78,7 @@ void entryModeSet(int id, int s) {
 		ditigalWrite(DB4,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
