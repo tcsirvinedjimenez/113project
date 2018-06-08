@@ -41,8 +41,8 @@ int main()
         lcdPosition(lcd, 0, 0);
         lcdPuts(lcd, buffer_date);
 
-        lcdPosition(lcd, 0, 1);
-        lcdPuts(lcd, buffer_time);
+        //lcdPosition(lcd, 0, 1);
+       // lcdPuts(lcd, buffer_time);
 
 	}
 }
