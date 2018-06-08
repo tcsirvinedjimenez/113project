@@ -126,8 +126,8 @@ int main(int argc, char** argv)
 				
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				newDelta=(int)delta_us;
-				printf("%d - 2000=%d\n",newDelta,newDelta-2000);
-				printf("%d + 2000=%d\n",newDelta,newDelta+2000);
+				printf("%d - 2000=%d\n",newDelta,oldDelta-2000);
+				printf("%d + 2000=%d\n",newDelta,oldDelta+2000);
 				printf("count: %d\n",count);
 				if(startf!=0 && count>100000 && ((oldDelta>(newDelta-2000)) && (oldDelta<(newDelta+2000)))){
 					strcpy(buffer1,"             ");
