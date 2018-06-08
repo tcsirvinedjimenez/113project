@@ -20,10 +20,10 @@
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
 void messagecode(int temperature);
-
+int intruder;
 int main(int argc, char** argv)
 {
-	
+	intruder=0;
 	char temp[256];
 	char temp2[256];
 	int temperature=75;
@@ -76,30 +76,32 @@ int main(int argc, char** argv)
 			lcdPosition(lcd, 0, 1);
 			lcdPuts(lcd, buffer1);
 			digitalWrite (LED, HIGH) ;
-			strcpy(buffer1,"out-of-home");
+			strcpy(buffer1,"out-of-home       ");
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
-			count = 0;
-			pinMode (LIGHT, OUTPUT) ;
-			digitalWrite(LIGHT,LOW);
-			delay(100);
-			pinMode(LIGHT,INPUT);
-			while(!digitalRead(LIGHT)){
-				count += 1;
-			}
-			printf("count: %d \n",count);
-			if(count>100000){
-				strcpy(buffer1,"               ");
-				lcdPosition(lcd, 0, 0);
-				strcpy(buffer1,"                ");
-				lcdPosition(lcd, 0, 1);
-				strcpy(buffer1,"Intruder Detected");
-				lcdPuts(lcd, buffer1);
-				lcdPosition(lcd, 0, 1);
-				digitalWrite (LED2, HIGH) ;
-				system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
-				
+			if(intruder==0){
+				count = 0;
+				pinMode (LIGHT, OUTPUT) ;
+				digitalWrite(LIGHT,LOW);
+				delay(100);
+				pinMode(LIGHT,INPUT);
+				while(!digitalRead(LIGHT)){
+					count += 1;
+				}
+				//printf("count: %d \n",count);
+				if(count>100000){
+					strcpy(buffer1,"               ");
+					lcdPosition(lcd, 0, 0);
+					strcpy(buffer1,"                ");
+					lcdPosition(lcd, 0, 1);
+					strcpy(buffer1,"Intruder Detected");
+					lcdPuts(lcd, buffer1);
+					lcdPosition(lcd, 0, 1);
+					digitalWrite (LED2, HIGH) ;
+					system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
+					intruder=1;
+				}
 			}
 		}
 		
@@ -130,6 +132,8 @@ void messagecode(int temperature){
 				printf("File Error 0\n");
 			}
 			else if(check[0]){
+				intruder=0;
+				digitalWrite(LED2, LOW) ;
 				printf("Message Recieved\n");
 			}
 			//check for temp command
