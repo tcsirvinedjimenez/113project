@@ -36,7 +36,7 @@ int main()
         tm_info = localtime(&timer);
 
         //strftime(buffer_date, 26, "Date: %m:%d:%Y", tm_info);
-        strftime(buffer_time, 26, "%H:%M %m:%d", tm_info);
+        strftime(buffer_time, 26, "%H:%M:%S  %m:%d", tm_info);
 
         //lcdPosition(lcd, 0, 0);
         //lcdPuts(lcd, buffer_date);
