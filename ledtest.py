@@ -6,8 +6,8 @@ GPIO.setmode(GPIO.BCM)
 LCD_RS = 26         #LCD Reset
 LCD_E  = 19       #LCD Enable
 LCD_D4 = 13         #LCD Bit 4
-LCD_D5 = 06         #LCD Bit 5
-LCD_D6 = 05         #LCD Bit 6
+LCD_D5 = 6         #LCD Bit 5
+LCD_D6 = 5         #LCD Bit 6
 LCD_D7 = 11         #LCD Bit 7
 LCD_WIDTH = 16      #LCD Device Width
 LCD_LINE_1 = 0x80   #LCD RAM address for the 1st Line
