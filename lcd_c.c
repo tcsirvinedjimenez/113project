@@ -19,7 +19,6 @@ void setDdRamAddress(char address);
 void sendChar(char c);
 void sendString(char* str);
 int getBit(char c, char bitNumber);
-void delay(void);
 
 void main(void) {
 	// the setup stuff 
@@ -55,7 +54,7 @@ void returnHome(void) {
 	ditigalWrite(DB5,HIGH);
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }	
 
 void entryModeSet(int id, int s) {
@@ -79,7 +78,7 @@ void entryModeSet(int id, int s) {
 	}
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 void displayOnOffControl(int display, int cursor, int blinking) {
@@ -107,7 +106,7 @@ void displayOnOffControl(int display, int cursor, int blinking) {
 	}
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 void cursorOrDisplayShift(int sc, int rl) {
@@ -130,7 +129,7 @@ void cursorOrDisplayShift(int sc, int rl) {
 	}
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 void functionSet(void) {
@@ -143,13 +142,13 @@ void functionSet(void) {
 	ditigalWrite(RS,LOW);
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
 	ditigalWrite(DB7,HIGH);
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 void setDdRamAddress(char address) {
@@ -194,7 +193,7 @@ void setDdRamAddress(char address) {
 	}
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 void sendChar(char c) {
@@ -243,7 +242,7 @@ void sendChar(char c) {
 	}
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOW);
-	delay();
+	delay(100);
 }
 
 // -- End of LCD Module instructions
@@ -261,7 +260,3 @@ int getBit(char c, char bitNumber) {
 	return (c >> bitNumber) & 1;
 }
 
-void delay(void) {
-	char c;
-	for (c = 0; c < 50; c++);
-}
