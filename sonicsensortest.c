@@ -1,5 +1,6 @@
-nclude <stdio.h>
+#include <stdio.h>
 #include <wiringPi.h>
+#include <time.h>
 
 // LED Pin - wiringPi pin 0 is BCM_GPIO 17.
 
@@ -9,8 +10,7 @@ nclude <stdio.h>
 int main (void)
 {
     printf ("Raspberry Pi Sonic Measurement \n") ;
-    float start_time;
-    float end_time;
+    struct timespec start, end;
     int distance;
 
     wiringPiSetup () ;
@@ -22,17 +22,21 @@ int main (void)
 
     digitalWrite(TRIG,HIGH);
     delay(1);
-    digitalWrite(TRIG,LOW):
+    digitalWrite(TRIG,LOW);
 
     while(!digitalRead(ECHO))
     {
-	
+	clock_gettime(CLOCK_MONOTONIC_RAW, &start);	
     } 
 
     while(digitalRead(ECHO))
     {
-	
+	clock_gettime(CLOCK_MONOTONIC_RAW, &end);	
     } 	
+	
+    uint64_t delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
+    distance = delta_us*17150;
+    printf("Distance: %f",distance);
      
     return 0 ;
 }
