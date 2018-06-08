@@ -30,7 +30,7 @@ int main (void)
 		temp = temp + (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;		
 	}
 	double reading = temp/100.0;
-	double resistance = reading * 6.05 - 939
+	double resistance = reading * 6.05 - 939;
 	float b = 3800;
 	float r0 = 100;
 	float t0 = 273.15;
