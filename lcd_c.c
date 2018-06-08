@@ -51,10 +51,10 @@ void returnHome(void) {
 	ditigalWrite(DB5,LOW);
 	ditigalWrite(DB4,LOW);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	ditigalWrite(DB5,HIGH);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }	
 
@@ -106,7 +106,7 @@ void displayOnOffControl(int display, int cursor, int blinking) {
 		ditigalWrite(DB4,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
@@ -117,7 +117,7 @@ void cursorOrDisplayShift(int sc, int rl) {
 	ditigalWrite(DB5,LOW);
 	ditigalWrite(DB4,HIGH);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	if(sc == 1){
 		ditigalWrite(DB7,HIGH);
 	}else if(sc == 0){
@@ -129,7 +129,7 @@ void cursorOrDisplayShift(int sc, int rl) {
 		ditigalWrite(DB6,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
@@ -142,10 +142,10 @@ void functionSet(void) {
 	ditigalWrite(DB4,LOW);
 	ditigalWrite(RS,LOW);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	ditigalWrite(DB7,HIGH);
 	ditigalWrite(E,HIGH);
 	ditigalWrite(E,LOw);
@@ -171,7 +171,7 @@ void setDdRamAddress(char address) {
 		ditigalWrite(DB4,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	if(getBit(address, 3) == 1){
 		ditigalWrite(DB7,HIGH);
 	}else{
@@ -220,7 +220,7 @@ void sendChar(char c) {
 	}
 	ditigalWrite(RS,HIGH);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	if(getBit(c, 3) == 1){
 		ditigalWrite(DB7,HIGH);
 	}else{
