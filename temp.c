@@ -30,7 +30,7 @@ int main (void)
 		temp = temp + (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;	
 
 	}
-	double reading = temp/1.0;
+	double reading = temp/100.0;
 	double resistance = reading * 6.05 - 939.0;
 	printf("R: %f\n",resistance);
 	float b = 3800.0;
