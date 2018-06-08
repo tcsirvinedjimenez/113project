@@ -19,6 +19,7 @@
 #define LIGHT 16
 #define TRIG 12
 #define ECHO 3
+#define BUZZ 1
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
@@ -58,7 +59,8 @@ int main(int argc, char** argv)
 	pinMode (LIGHT, INPUT) ;
 	pinMode (TRIG, OUTPUT) ;
     pinMode (ECHO, INPUT) ;
-	
+	pinMode (BUZZ, OUTPUT) ;
+	digitalWrite (BUZZ, LOW) ;
 	
 	printf("Process Starting\n");
 	while(1){
@@ -128,6 +130,7 @@ int main(int argc, char** argv)
 					lcdPuts(lcd, buffer1);
 					lcdPosition(lcd, 0, 1);
 					digitalWrite (LED2, HIGH) ;
+					digitalWrite (BUZZ, HIGH) ;
 					system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 					intruder=1;
 				}
@@ -164,6 +167,7 @@ void messagecode(int temperature){
 			else if(check[0]){
 				intruder=0;
 				digitalWrite(LED2, LOW) ;
+				digitalWrite (BUZZ, LOW) ;
 				printf("Message Recieved\n");
 			}
 			//check for temp command
