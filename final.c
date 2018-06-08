@@ -125,7 +125,7 @@ int main(int argc, char** argv)
 				
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				newDelta=(int)delta_us;
-				printf("Distance: %f\n",delta_us);
+				printf("Distance: %d\n",newDelta);
 				printf("count: %d\n",count);
 				if(count>100000 || ((oldDelta>(newDelta-2500)) && (oldDelta<(newDelta+2500)))){
 					strcpy(buffer1,"             ");
