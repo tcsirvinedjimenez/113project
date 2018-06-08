@@ -122,7 +122,7 @@ int main(int argc, char** argv)
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				printf("Distance: %f\n",delta_us);
 				printf("count: %d\n",count);
-				printf('delta minus  %d\n',(int)delta_us-2500.0);
+				printf("delta minus  %d\n",(int)delta_us-2500.0);
 				if(count>100000 || (((int)oldDelta>(int)delta_us-2500) && ((int)oldDelta<(int)delta_us+2500))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
