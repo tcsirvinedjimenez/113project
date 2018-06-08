@@ -6,7 +6,7 @@
 #include <ctype.h>
 #include <lcd.h>
 
-#define LCD_RS  11               //Register select pin
+#define LCD_RS  14               //Register select pin
 #define LCD_E   21               //Enable Pin
 #define LCD_D4  22               //Data pin 4
 #define LCD_D5  23               //Data pin 5
