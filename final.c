@@ -127,7 +127,6 @@ int main(int argc, char** argv)
 				newDelta=(int)delta_us;
 				printf("Distance: %f\n",delta_us);
 				printf("count: %d\n",count);
-				//printf("delta minus  %d\n",(int)delta_us-2500.0);
 				if(count>100000 || ((oldDelta>(newDelta-2500)) && (oldDelta<(newDelta+2500)))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
@@ -143,6 +142,7 @@ int main(int argc, char** argv)
 				}
 				oldDelta=newDelta;
 				printf("olddeta %f\n",delta_us);
+				printf("delta minus  %d\n",newDelta-2500);
 			}
 		}
 		
