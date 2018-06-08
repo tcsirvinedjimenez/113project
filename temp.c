@@ -3,8 +3,8 @@
 #include <time.h> 
 #include <math.h>
 
-#define	APIN 15
-#define BPIN 4 
+#define	APIN 4
+#define BPIN 15 
 
 int main (void)
 {
