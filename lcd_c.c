@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <WiringPi.h>
+#include <wiringPi.h>
 
 #define DB7 25
 #define DB6 24
