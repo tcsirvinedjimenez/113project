@@ -20,6 +20,8 @@
 #define TRIG 12
 #define ECHO 3
 #define BUZZ 1
+#define	APIN 2
+#define BPIN 7 
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
