@@ -18,7 +18,7 @@ int main (void)
 	  pinMode (APIN, INPUT);
   	pinMode (BPIN, OUTPUT);
 		digitalWrite(BPIN,LOW);
-		delaY(100);
+		delay(100);
   	pinMode (BPIN, INPUT);
   	pinMode (APIN, OUTPUT);
 		digitalWrite(APIN,HIGH);
