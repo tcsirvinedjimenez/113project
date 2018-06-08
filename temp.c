@@ -18,7 +18,7 @@ int main (void)
 	  pinMode (APIN, INPUT);
   	pinMode (BPIN, OUTPUT);
 		digitalWrite(BPIN,LOW);
-		delaY(100);
+		delay(100);
   	pinMode (BPIN, INPUT);
   	pinMode (APIN, OUTPUT);
 		digitalWrite(APIN,HIGH);
@@ -36,7 +36,7 @@ int main (void)
 	float t0 = 273.15;
 	float t25 = t0 + 25.0;
 	float inv_T = (1/t25) + (1/b) * log(resistance/r0); 
-	float real_temp = .9 * ((1/invT)-t0);
+	float real_temp = .9 * ((1/inv_T)-t0);
 	printf("Temp: %f \n");
 
   return 0 ;
