@@ -31,15 +31,7 @@ int main (void)
 
 	}
 	double reading = temp/100.0;
-	double resistance = reading * 6.05 - 100.0;
+	double resistance = reading * 6.05 - 72.0;
 	printf("R: %f\n",resistance);
-	float b = 3800.0;
-	float r0 = 40.0;
-	float t0 = 273.15;
-	float t25 = t0 + 25.0;
-	float inv_T = (1.0/t25) + (1.0/b) * log(resistance/r0); 
-	float real_temp = 0.0000001 * ((1.0/inv_T)-t0);
-	printf("Temp: %f \n");
-
   return 0 ;
 }
