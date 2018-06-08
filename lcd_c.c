@@ -33,9 +33,10 @@ void main(void) {
 	functionSet();
 	entryModeSet(1, 0); // increment and no shift
 	displayOnOffControl(1, 1, 1); // display on, cursor on and blinking on
-	sendString("EdSim51 LCD Module Simulation");
-	setDdRamAddress(0x40); // set address to start of second line
-	sendString("Based on Hitachi HD44780");
+	setDdRamAddress(0x00);
+	sendString("test");
+	//setDdRamAddress(0x40); // set address to start of second line
+	//sendString("Based on Hitachi HD44780");
 	
 	while(1){
 	}
