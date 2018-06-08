@@ -135,8 +135,10 @@ int main(int argc, char** argv)
 				printf("%d + 1000=%d > %d\n",oldDelta,oldDelta+1000,newDelta);
 				printf("count: %d\n",count);
 				if(startf!=0 && count>100000){
-					if(newDelta > oldDelta-1500){
-						if(newDelta < oldDelta+1500){
+					oldDelta=oldDelta-2000;
+					if(newDelta > oldDelta){
+						oldDelta=oldDelta+4000;
+						if(newDelta < oldDelta){
 							strcpy(buffer1,"             ");
 							lcdPosition(lcd, 0, 0);
 							strcpy(buffer1,"             ");
