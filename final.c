@@ -13,7 +13,9 @@
 #define LCD_D6  24               //Data pin 6
 #define LCD_D7  25               //Data pin 7
 #define SWITCH 13
-#define LED 15
+#define LED 4
+#define LED2 15
+#define LIGHT 16
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
@@ -29,7 +31,7 @@ int main(int argc, char** argv)
     char buffer1[26];
     char buffer2[26];
     struct tm* tm_info;
-	
+	int count = 0;
 	int lcd;                
     wiringPiSetup();
 	
@@ -46,6 +48,8 @@ int main(int argc, char** argv)
 	pinMode (SWITCH, INPUT) ;
     pullUpDnControl(SWITCH, PUD_UP);
 	pinMode (LED, OUTPUT) ;
+	pinMode (LED2, OUTPUT) ;
+	pinMode (LIGHT, INPUT) ;
 	
 	printf("Process Starting\n");
 	while(1){
@@ -70,14 +74,20 @@ int main(int argc, char** argv)
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
-			//if(/*motion or light detect*/){
-				//strcpy(buffer1,"Intruder Detected");
-				//lcdPuts(lcd, buffer1);
-				//lcdPosition(lcd, 0, 1);
+			digitalWrite(LIGHT,LOW);
+			delay(100);
+			pinMode(LIGHT,INPUT);
+			while(!digitalRead(LIGHT)){
+				count += 1;
+			}
+			if(count>100000){
+				strcpy(buffer1,"Intruder Detected");
+				lcdPuts(lcd, buffer1);
+				lcdPosition(lcd, 0, 1);
+				digitalWrite (LED2, HIGH) ;
+				system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 				
-				//system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
-				
-			//}
+			}
 		}
 		
 		
