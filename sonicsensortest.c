@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <wiringPi.h>
-#include <sys/time.h>
+#include <time.h>
 
 // LED Pin - wiringPi pin 0 is BCM_GPIO 17.
 
@@ -34,7 +34,7 @@ int main (void)
 	clock_gettime(CLOCK_MONOTONIC_RAW, &end);	
     } 	
 	
-    uint64_t delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
+    int delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
     distance = delta_us*17150;
     printf("Distance: %f",distance);
      
