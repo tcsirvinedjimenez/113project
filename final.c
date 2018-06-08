@@ -42,7 +42,7 @@ int main(int argc, char** argv)
     struct tm* tm_info;
 	int count = 0;
 	int lcd;
-	int	start=0;
+	int	startf=0;
     wiringPiSetup();
 	
 	
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
 				printf("%d - 25000=%d\n",newDelta,newDelta-3000);
 				printf("%d + 25000=%d\n",newDelta,newDelta+3000);
 				printf("count: %d\n",count);
-				if(start!=0 && count>100000 && ((oldDelta>(newDelta-3000)) && (oldDelta<(newDelta+3000)))){
+				if(startf!=0 && count>100000 && ((oldDelta>(newDelta-3000)) && (oldDelta<(newDelta+3000)))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"             ");
@@ -142,7 +142,7 @@ int main(int argc, char** argv)
 					system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 					intruder=1;
 				}
-				start=1;
+				startf=1;
 				oldDelta=newDelta;
 			}
 		}
