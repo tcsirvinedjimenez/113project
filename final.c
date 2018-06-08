@@ -24,7 +24,11 @@
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
 void messagecode(int temperature);
+void updatetemp(void);
+
 int intruder;
+int temperature;
+
 int main(int argc, char** argv)
 {
 	intruder=0;
@@ -65,7 +69,7 @@ int main(int argc, char** argv)
     pinMode (ECHO, INPUT) ;
 	pinMode (BUZZ, OUTPUT) ;
 	digitalWrite (BUZZ, LOW) ;
-	
+	updatetemp();
 	printf("Process Starting\n");
 	while(1){
 		if(digitalRead(SWITCH)){
@@ -126,8 +130,8 @@ int main(int argc, char** argv)
 				
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				newDelta=(int)delta_us;
-				printf("%d - 2000=%d\n",newDelta,oldDelta-2000);
-				printf("%d + 2000=%d\n",newDelta,oldDelta+2000);
+				printf("%d - 2000=%d  <%d\n",oldDelta,oldDelta-2000,newDelta);
+				printf("%d + 2000=%d > %d\n",oldDelta,oldDelta+2000,newDelta);
 				printf("count: %d\n",count);
 				if(startf!=0 && count>100000 && (newDelta > (oldDelta-2000)) && (newDelta < (oldDelta+2000))){
 					strcpy(buffer1,"             ");
@@ -159,7 +163,31 @@ int Does_File_Exist(char *filename){
    }
    return (fp!=NULL);
 }
+void updatetemp(void){
+	wiringPiSetup () ;
+  struct timespec start, end;
+	double temp = 0;
+	int i;
+	for(i = 0; i<100; i++){
+	  pinMode (APIN, INPUT);
+  	pinMode (BPIN, OUTPUT);
+		digitalWrite(BPIN,LOW);
+		delay(100);
+  	pinMode (BPIN, INPUT);
+  	pinMode (APIN, OUTPUT);
+		digitalWrite(APIN,HIGH);
+		clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+		while(!digitalRead(BPIN)){
+			continue;
+		}
+		clock_gettime(CLOCK_MONOTONIC_RAW, &end);
+		temp = temp + (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;	
 
+	}
+	double reading = temp/100.0;
+	double resistance = reading * 6.05 - 72.0;
+	temperature=resistance;
+}
 void messagecode(int temperature){
 	int check[2]={0};
 	char emailname[]="6192194457@pm.sprint.com";
