@@ -80,12 +80,14 @@ int main(int argc, char** argv)
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
+			pinMode (LIGHT, OUTPUT) ;
 			digitalWrite(LIGHT,LOW);
 			delay(100);
 			pinMode(LIGHT,INPUT);
 			while(!digitalRead(LIGHT)){
 				count += 1;
 			}
+			printf("count: %d \n",count);
 			if(count>100000){
 				strcpy(buffer1,"               ");
 				lcdPosition(lcd, 0, 0);
