@@ -34,7 +34,7 @@ int main (void)
 	clock_gettime(CLOCK_MONOTONIC_RAW, &end);	
     } 	
 	
-    int delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
+    double delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
     distance = delta_us*17150;
     printf("Distance: %f",distance);
      
