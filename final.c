@@ -80,6 +80,7 @@ int main(int argc, char** argv)
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
+			count = 0;
 			pinMode (LIGHT, OUTPUT) ;
 			digitalWrite(LIGHT,LOW);
 			delay(100);
