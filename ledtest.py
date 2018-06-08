@@ -3,12 +3,12 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-LCD_RS = 25         #LCD Reset
-LCD_E  = 24         #LCD Enable
-LCD_D4 = 23         #LCD Bit 4
-LCD_D5 = 27         #LCD Bit 5
-LCD_D6 = 15         #LCD Bit 6
-LCD_D7 = 14         #LCD Bit 7
+LCD_RS = 26         #LCD Reset
+LCD_E  = 19       #LCD Enable
+LCD_D4 = 13         #LCD Bit 4
+LCD_D5 = 06         #LCD Bit 5
+LCD_D6 = 05         #LCD Bit 6
+LCD_D7 = 11         #LCD Bit 7
 LCD_WIDTH = 16      #LCD Device Width
 LCD_LINE_1 = 0x80   #LCD RAM address for the 1st Line
 LCD_LINE_2 = 0xC0   #LCD RAM address for the 2nd Line
