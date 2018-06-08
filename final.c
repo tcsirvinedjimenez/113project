@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	int check[2]={0};
 	char temp[256];
 	char temp2[256];
-	float temperature=0.0;
+	int temperature=0;
 	time_t timer;
     char buffer1[26];
     char buffer2[26];
@@ -40,17 +40,16 @@ int main(int argc, char** argv)
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
-	if(Does_File_Exist("/var/tmp/mailcopy")){
-		system("su - pi -c \"rm /var/tmp/mailcopy\"");
-	}
 	printf("Process Starting\n");
 	while(1){
 
         time(&timer);
         tm_info = localtime(&timer);
         
-		strftime(buffer1, 26, "    %H:%M:%S", tm_info);  
-        strftime(buffer2, 26, "%m:%d:%Y Temp:", tm_info);
+		strftime(buffer1, 26, "%H:%M:%S Temp", tm_info);  
+        strftime(buffer2, 26, "%m:%d:%Y  ", tm_info);
+		gcvt(temperature, 6, temp2);
+		strcat(buffer2,temp2);
 		lcdPosition(lcd, 0, 0);
         lcdPuts(lcd, buffer1);
 		lcdPosition(lcd, 0, 1);
