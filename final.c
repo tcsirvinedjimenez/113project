@@ -30,6 +30,8 @@ int main(int argc, char** argv)
 	intruder=0;
 	struct timespec start, end;
 	double delta_us,oldDelta;
+	double plus = 2500;
+	double minus =-2500;
 	char temp[256];
 	char temp2[256];
 	int temperature=75;
@@ -122,8 +124,8 @@ int main(int argc, char** argv)
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				printf("Distance: %f\n",delta_us);
 				printf("count: %d\n",count);
-				printf("delta minus  %d\n",(int)delta_us-2500.0);
-				if(count>100000 || (((int)oldDelta>(int)delta_us-2500) && ((int)oldDelta<(int)delta_us+2500))){
+				//printf("delta minus  %d\n",(int)delta_us-2500.0);
+				if(count>100000 || ((oldDelta>(delta_us+minus)) && (oldDelta<(delta_us+plus)))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"             ");
