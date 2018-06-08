@@ -88,7 +88,7 @@ void displayOnOffControl(int display, int cursor, int blinking) {
 	ditigalWrite(DB5,LOW);
 	ditigalWrite(DB4,LOW);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	ditigalWrite(DB7,HIGH);
 	if(display == 1){
 		ditigalWrite(DB6,HIGH);
