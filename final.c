@@ -121,7 +121,7 @@ int main(int argc, char** argv)
 				
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				
-				if(count>100000 || (oldDelta>delta_us-2000 && oldDelta<delta_us+2000)){
+				if(count>100000 || (oldDelta>delta_us-2500 && oldDelta<delta_us+2500)){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"             ");
