@@ -41,7 +41,6 @@ int main(int argc, char** argv)
 	double minus =-2500;
 	char temp[256];
 	char temp2[256];
-	int temperature=75;
 	time_t timer;
     char buffer1[26];
     char buffer2[26];
