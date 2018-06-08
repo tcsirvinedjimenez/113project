@@ -12,7 +12,7 @@
 #define LCD_D5  23               //Data pin 5
 #define LCD_D6  24               //Data pin 6
 #define LCD_D7  25               //Data pin 7
-#define SWITCH 4
+#define SWITCH 13
 #define LED 15
 
 int Check_In_Email(char *str);
