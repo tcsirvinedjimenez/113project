@@ -33,7 +33,7 @@ void main(void) {
 	functionSet();
 	entryModeSet(1, 0); // increment and no shift
 	displayOnOffControl(1, 1, 1); // display on, cursor on and blinking on
-	setDdRamAddress(0x00);
+	setDdRamAddress(0);
 	sendString("test");
 	//setDdRamAddress(0x40); // set address to start of second line
 	//sendString("Based on Hitachi HD44780");
