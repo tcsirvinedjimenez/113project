@@ -65,7 +65,7 @@ void entryModeSet(int id, int s) {
 	ditigalWrite(DB5,LOW);
 	ditigalWrite(DB4,LOW);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	ditigalWrite(DB6,HIGH);
 	if(id == 1){
 		ditigalWrite(DB5,HIGH);
@@ -148,7 +148,7 @@ void functionSet(void) {
 	ditigalWrite(E,LOW);
 	ditigalWrite(DB7,HIGH);
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
@@ -193,7 +193,7 @@ void setDdRamAddress(char address) {
 		ditigalWrite(DB4,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
@@ -242,7 +242,7 @@ void sendChar(char c) {
 		ditigalWrite(DB4,LOW); 
 	}
 	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOw);
+	ditigalWrite(E,LOW);
 	delay();
 }
 
