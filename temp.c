@@ -31,7 +31,7 @@ int main (void)
 
 	}
 	double reading = temp/100.0;
-	double resistance = reading * 6.05 - 500.0;
+	double resistance = reading * 6.05 - 100.0;
 	printf("R: %f\n",resistance);
 	float b = 3800.0;
 	float r0 = 1000.0;
