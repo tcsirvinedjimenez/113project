@@ -7,11 +7,11 @@
 #include <lcd.h>
 
 #define LCD_RS  11               //Register select pin
-#define LCD_E   10               //Enable Pin
-#define LCD_D4  6               //Data pin 4
-#define LCD_D5  5               //Data pin 5
-#define LCD_D6  4               //Data pin 6
-#define LCD_D7  1               //Data pin 7
+#define LCD_E   21               //Enable Pin
+#define LCD_D4  22               //Data pin 4
+#define LCD_D5  23               //Data pin 5
+#define LCD_D6  24               //Data pin 6
+#define LCD_D7  25               //Data pin 7
 #define SWITCH 4
 #define LED 15
 
@@ -70,14 +70,14 @@ int main(int argc, char** argv)
 			lcdPosition(lcd, 0, 0);
 			lcdPuts(lcd, buffer1);
 			messagecode(temperature);
-			if(/*motion or light detect*/){
-				strcpy(buffer1,"Intruder Detected");
-				lcdPuts(lcd, buffer1);
-				lcdPosition(lcd, 0, 1);
+			//if(/*motion or light detect*/){
+				//strcpy(buffer1,"Intruder Detected");
+				//lcdPuts(lcd, buffer1);
+				//lcdPosition(lcd, 0, 1);
 				
-				system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
+				//system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 				
-			}
+			//}
 		}
 		
 		
