@@ -44,204 +44,204 @@ void main(void) {
 // A full explanation of the LCD Module: HD44780.pdf
 
 void returnHome(void) {
-	ditigalWrite(RS,LOW);
-	ditigalWrite(DB7,LOW);
-	ditigalWrite(DB6,LOW);
-	ditigalWrite(DB5,LOW);
-	ditigalWrite(DB4,LOW);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
-	ditigalWrite(DB5,HIGH);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(RS,LOW);
+	digitalWrite(DB7,LOW);
+	digitalWrite(DB6,LOW);
+	digitalWrite(DB5,LOW);
+	digitalWrite(DB4,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
+	digitalWrite(DB5,HIGH);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }	
 
 void entryModeSet(int id, int s) {
-	ditigalWrite(RS,LOW);
-	ditigalWrite(DB7,LOW);
-	ditigalWrite(DB6,LOW);
-	ditigalWrite(DB5,LOW);
-	ditigalWrite(DB4,LOW);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
-	ditigalWrite(DB6,HIGH);
+	digitalWrite(RS,LOW);
+	digitalWrite(DB7,LOW);
+	digitalWrite(DB6,LOW);
+	digitalWrite(DB5,LOW);
+	digitalWrite(DB4,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
+	digitalWrite(DB6,HIGH);
 	if(id == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else if(id == 0){
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(s == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else if(s == 0){
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
 void displayOnOffControl(int display, int cursor, int blinking) {
-	ditigalWrite(DB7,LOW);
-	ditigalWrite(DB6,LOW);
-	ditigalWrite(DB5,LOW);
-	ditigalWrite(DB4,LOW);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
-	ditigalWrite(DB7,HIGH);
+	digitalWrite(DB7,LOW);
+	digitalWrite(DB6,LOW);
+	digitalWrite(DB5,LOW);
+	digitalWrite(DB4,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
+	digitalWrite(DB7,HIGH);
 	if(display == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else if(display == 0){
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
 	if(cursor == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else if(cursor == 0){
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(blinking == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else if(blinking == 0){
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
 void cursorOrDisplayShift(int sc, int rl) {
-	ditigalWrite(RS,LOW);
-	ditigalWrite(DB7,LOW);
-	ditigalWrite(DB6,LOW);
-	ditigalWrite(DB5,LOW);
-	ditigalWrite(DB4,HIGH);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(RS,LOW);
+	digitalWrite(DB7,LOW);
+	digitalWrite(DB6,LOW);
+	digitalWrite(DB5,LOW);
+	digitalWrite(DB4,HIGH);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	if(sc == 1){
-		ditigalWrite(DB7,HIGH);
+		digitalWrite(DB7,HIGH);
 	}else if(sc == 0){
-		ditigalWrite(DB7,LOW); 
+		digitalWrite(DB7,LOW); 
 	}
 	if(rl == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else if(rl == 0){
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
 void functionSet(void) {
 	// The high nibble for the function set is actually sent twice. Why? See 4-bit operation
 	// on pages 39 and 42 of HD44780.pdf.
-	ditigalWrite(DB7,LOW);
-	ditigalWrite(DB6,LOW);
-	ditigalWrite(DB5,HIGH);
-	ditigalWrite(DB4,LOW);
-	ditigalWrite(RS,LOW);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(DB7,LOW);
+	digitalWrite(DB6,LOW);
+	digitalWrite(DB5,HIGH);
+	digitalWrite(DB4,LOW);
+	digitalWrite(RS,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
-	ditigalWrite(DB7,HIGH);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
+	digitalWrite(DB7,HIGH);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
 void setDdRamAddress(char address) {
-	ditigalWrite(RS,LOW);
-	ditigalWrite(DB7,HIGH);
+	digitalWrite(RS,LOW);
+	digitalWrite(DB7,HIGH);
 	if(getBit(address, 6) == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else{
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
 	if(getBit(address, 5) == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else{
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(getBit(address, 4) == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else{
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	if(getBit(address, 3) == 1){
-		ditigalWrite(DB7,HIGH);
+		digitalWrite(DB7,HIGH);
 	}else{
-		ditigalWrite(DB7,LOW); 
+		digitalWrite(DB7,LOW); 
 	}
 	if(getBit(address, 2) == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else{
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
 	if(getBit(address, 1) == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else{
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(getBit(address, 0) == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else{
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
 void sendChar(char c) {
 	if(getBit(c, 7) == 1){
-		ditigalWrite(DB7,HIGH);
+		digitalWrite(DB7,HIGH);
 	}else{
-		ditigalWrite(DB7,LOW); 
+		digitalWrite(DB7,LOW); 
 	}
 	if(getBit(c, 6) == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else{
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
 	if(getBit(c, 5) == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else{
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(getBit(c, 4) == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else{
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(RS,HIGH);
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(RS,HIGH);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	if(getBit(c, 3) == 1){
-		ditigalWrite(DB7,HIGH);
+		digitalWrite(DB7,HIGH);
 	}else{
-		ditigalWrite(DB7,LOW); 
+		digitalWrite(DB7,LOW); 
 	}
 	if(getBit(c, 2) == 1){
-		ditigalWrite(DB6,HIGH);
+		digitalWrite(DB6,HIGH);
 	}else{
-		ditigalWrite(DB6,LOW); 
+		digitalWrite(DB6,LOW); 
 	}
 	if(getBit(c, 1) == 1){
-		ditigalWrite(DB5,HIGH);
+		digitalWrite(DB5,HIGH);
 	}else{
-		ditigalWrite(DB5,LOW); 
+		digitalWrite(DB5,LOW); 
 	}
 	if(getBit(c, 0) == 1){
-		ditigalWrite(DB4,HIGH);
+		digitalWrite(DB4,HIGH);
 	}else{
-		ditigalWrite(DB4,LOW); 
+		digitalWrite(DB4,LOW); 
 	}
-	ditigalWrite(E,HIGH);
-	ditigalWrite(E,LOW);
+	digitalWrite(E,HIGH);
+	digitalWrite(E,LOW);
 	delay(100);
 }
 
@@ -259,4 +259,3 @@ void sendString(char* str) {
 int getBit(char c, char bitNumber) {
 	return (c >> bitNumber) & 1;
 }
-
