@@ -35,14 +35,14 @@ int main()
         time(&timer);
         tm_info = localtime(&timer);
 
-        strftime(buffer_date, 26, "%m-%d %H:%M", tm_info);
-        //strftime(buffer_time, 26, "Time: %H:%M:%S", tm_info);
+        strftime(buffer_date, 26, "Date: %m:%d:%Y", tm_info);
+        strftime(buffer_time, 26, "Time: %H:%M:%S", tm_info);
 
         lcdPosition(lcd, 0, 0);
         lcdPuts(lcd, buffer_date);
 
-        //lcdPosition(lcd, 0, 1);
-       // lcdPuts(lcd, buffer_time);
+        lcdPosition(lcd, 0, 1);
+        lcdPuts(lcd, buffer_time);
 
 	}
 }
