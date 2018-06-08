@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <lcd.h>
 
+
 #define LCD_RS  14               //Register select pin
 #define LCD_E   21               //Enable Pin
 #define LCD_D4  22               //Data pin 4
@@ -16,6 +17,8 @@
 #define LED 4
 #define LED2 15
 #define LIGHT 16
+#define TRIG 12
+#define ECHO 3
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
@@ -24,6 +27,8 @@ int intruder;
 int main(int argc, char** argv)
 {
 	intruder=0;
+	struct timespec start, end;
+	double delta_us,oldDelta;
 	char temp[256];
 	char temp2[256];
 	int temperature=75;
@@ -34,6 +39,7 @@ int main(int argc, char** argv)
 	int count = 0;
 	int lcd;                
     wiringPiSetup();
+	
 	
 	if (lcd = lcdInit (2, 16,4, LCD_RS, LCD_E ,LCD_D4 , LCD_D5, LCD_D6,LCD_D7,0,0,0,0)){
             printf ("lcd init failed! \n");
@@ -50,6 +56,8 @@ int main(int argc, char** argv)
 	pinMode (LED, OUTPUT) ;
 	pinMode (LED2, OUTPUT) ;
 	pinMode (LIGHT, INPUT) ;
+	pinMode (TRIG, OUTPUT) ;
+    pinMode (ECHO, INPUT) ;
 	
 	
 	printf("Process Starting\n");
@@ -70,11 +78,13 @@ int main(int argc, char** argv)
 			messagecode(temperature);
 		}
 		else{
-			strcpy(buffer1,"               ");
-			lcdPosition(lcd, 0, 0);
-			strcpy(buffer1,"                ");
-			lcdPosition(lcd, 0, 1);
-			lcdPuts(lcd, buffer1);
+			if(intruder==0){
+				strcpy(buffer1,"               ");
+				lcdPosition(lcd, 0, 0);
+				strcpy(buffer1,"                ");
+				lcdPosition(lcd, 0, 1);
+				lcdPuts(lcd, buffer1);
+			}
 			digitalWrite (LED, HIGH) ;
 			strcpy(buffer1,"out-of-home       ");
 			lcdPosition(lcd, 0, 0);
@@ -89,8 +99,27 @@ int main(int argc, char** argv)
 				while(!digitalRead(LIGHT)){
 					count += 1;
 				}
-				//printf("count: %d \n",count);
-				if(count>100000){
+				
+				digitalWrite(TRIG,LOW);
+				delay(2000);
+
+				digitalWrite(TRIG,HIGH);
+				delay(1);
+				digitalWrite(TRIG,LOW);
+
+				while(!digitalRead(ECHO))
+				{
+				clock_gettime(CLOCK_MONOTONIC_RAW, &start);	
+				} 
+
+				while(digitalRead(ECHO))
+				{
+				clock_gettime(CLOCK_MONOTONIC_RAW, &end);	
+				} 	
+				
+				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
+				
+				if(count>100000 &&(oldDelta>delta_us-2000 && oldDelta<delta_us+2000)){
 					strcpy(buffer1,"               ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"                ");
@@ -102,6 +131,7 @@ int main(int argc, char** argv)
 					system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 					intruder=1;
 				}
+				olddelta=delta_us;
 			}
 		}
 		
