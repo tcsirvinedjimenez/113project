@@ -27,7 +27,8 @@ int main (void)
 		while(!digitalRead(BPIN)){
 		}
 		clock_gettime(CLOCK_MONOTONIC_RAW, &end);
-		temp = temp + (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;		
+		temp = temp + (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;	
+		printf("looped \n");	
 	}
 	double reading = temp/100.0;
 	double resistance = reading * 6.05 - 939;
