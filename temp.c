@@ -28,7 +28,7 @@ int main (void)
 		}
 		clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 		temp = temp + (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;	
-		printf("looped \n");	
+		printf("looped %f",temp);	
 	}
 	double reading = temp/100.0;
 	double resistance = reading * 6.05 - 939;
