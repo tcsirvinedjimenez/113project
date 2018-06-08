@@ -12,6 +12,8 @@
 #define LCD_D5  5               //Data pin 5
 #define LCD_D6  4               //Data pin 6
 #define LCD_D7  1               //Data pin 7
+#define SWITCH 4
+#define LED 15
 
 int Check_In_Email(char *str);
 int Does_File_Exist(char *filename);
@@ -39,21 +41,44 @@ int main(int argc, char** argv)
 	if(Does_File_Exist("/var/tmp/mail")){
 		system("su - pi -c \"rm /var/tmp/mail\"");
 	}
+	
+	//led  and switch code
+	pinMode (SWITCH, INPUT) ;
+    pullUpDnControl(SWITCH, PUD_UP);
+	pinMode (LED, OUTPUT) ;
+	
 	printf("Process Starting\n");
 	while(1){
-
-        time(&timer);
-        tm_info = localtime(&timer);
-        
-		strftime(buffer1, 26, "%H:%M:%S  Temp", tm_info);  
-        strftime(buffer2, 26, "%m:%d:%Y  ", tm_info);
-		gcvt(temperature, 6, temp2);
-		strcat(buffer2,temp2);
-		lcdPosition(lcd, 0, 0);
-        lcdPuts(lcd, buffer1);
-		lcdPosition(lcd, 0, 1);
-        lcdPuts(lcd, buffer2);
-		messagecode(temperature);
+		if(digitalRead(SWITCH)){
+			digitalWrite (LED, LOW) ;
+			time(&timer);
+			tm_info = localtime(&timer);
+			
+			strftime(buffer1, 26, "%H:%M:%S  Temp", tm_info);  
+			strftime(buffer2, 26, "%m:%d:%Y  ", tm_info);
+			gcvt(temperature, 6, temp2);
+			strcat(buffer2,temp2);
+			lcdPosition(lcd, 0, 0);
+			lcdPuts(lcd, buffer1);
+			lcdPosition(lcd, 0, 1);
+			lcdPuts(lcd, buffer2);
+			messagecode(temperature);
+		}
+		else{
+			digitalWrite (LED, HIGH) ;
+			strcpy(buffer1,"out-of-home");
+			lcdPosition(lcd, 0, 0);
+			lcdPuts(lcd, buffer1);
+			messagecode(temperature);
+			if(/*motion or light detect*/){
+				strcpy(buffer1,"Intruder Detected");
+				lcdPuts(lcd, buffer1);
+				lcdPosition(lcd, 0, 1);
+				
+				system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
+				
+			}
+		}
 		
 		
 	}
