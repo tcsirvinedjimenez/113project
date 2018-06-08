@@ -104,7 +104,8 @@ int main(int argc, char** argv)
 				while(!digitalRead(LIGHT)){
 					count += 1;
 				}
-				
+				pinMode (TRIG, OUTPUT) ;
+				pinMode (ECHO, INPUT) ;
 				digitalWrite(TRIG,LOW);
 				delay(2000);
 
@@ -127,7 +128,7 @@ int main(int argc, char** argv)
 				printf("Distance: %f\n",delta_us);
 				printf("count: %d\n",count);
 				//printf("delta minus  %d\n",(int)delta_us-2500.0);
-				if(count>100000 || ((oldDelta>(delta_us+minus)) && (oldDelta<(delta_us+plus)))){
+				if(count>100000 || ((oldDelta>(newDelta-2500)) && (oldDelta<(newDelta+2500)))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"             ");
