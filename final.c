@@ -126,10 +126,10 @@ int main(int argc, char** argv)
 				
 				delta_us = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 				newDelta=(int)delta_us;
-				printf("%d - 25000=%d\n",newDelta,newDelta-3000);
-				printf("%d + 25000=%d\n",newDelta,newDelta+3000);
+				printf("%d - 2000=%d\n",newDelta,newDelta-2000);
+				printf("%d + 2000=%d\n",newDelta,newDelta+2000);
 				printf("count: %d\n",count);
-				if(startf!=0 && count>100000 && ((oldDelta>(newDelta-3000)) && (oldDelta<(newDelta+3000)))){
+				if(startf!=0 && count>100000 && ((oldDelta>(newDelta-2000)) && (oldDelta<(newDelta+2000)))){
 					strcpy(buffer1,"             ");
 					lcdPosition(lcd, 0, 0);
 					strcpy(buffer1,"             ");
