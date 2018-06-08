@@ -135,8 +135,8 @@ int main(int argc, char** argv)
 				printf("%d + 1000=%d > %d\n",oldDelta,oldDelta+1000,newDelta);
 				printf("count: %d\n",count);
 				if(startf!=0 && count>100000){
-					if(newDelta > oldDelta-1000){
-						if(newDelta < oldDelta+1000){
+					if(newDelta > oldDelta-1500){
+						if(newDelta < oldDelta+1500){
 							strcpy(buffer1,"             ");
 							lcdPosition(lcd, 0, 0);
 							strcpy(buffer1,"             ");
@@ -145,7 +145,7 @@ int main(int argc, char** argv)
 							lcdPuts(lcd, buffer1);
 							lcdPosition(lcd, 0, 1);
 							digitalWrite (LED2, HIGH) ;
-							//digitalWrite (BUZZ, HIGH) ;
+							digitalWrite (BUZZ, HIGH) ;
 							system("echo \"Rasberry Pi\" | mail -s \"Intruder detected Turn off Alarm?\" 6192194457@pm.sprint.com");
 							intruder=1;
 						}
