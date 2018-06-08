@@ -34,7 +34,7 @@ int main (void)
 	double resistance = reading * 6.05 - 100.0;
 	printf("R: %f\n",resistance);
 	float b = 3800.0;
-	float r0 = 100.0;
+	float r0 = 1.0;
 	float t0 = 273.15;
 	float t25 = t0 + 25.0;
 	float inv_T = (1.0/t25) + (1.0/b) * log(resistance/r0); 
